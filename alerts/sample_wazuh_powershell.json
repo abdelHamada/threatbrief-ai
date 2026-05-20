@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-05-20T14:08:33Z",
+  "agent": {
+    "id": "009",
+    "name": "WIN-WKS-14",
+    "ip": "10.0.4.21"
+  },
+  "rule": {
+    "id": "91802",
+    "level": 10,
+    "description": "Suspicious PowerShell command execution",
+    "groups": [
+      "windows",
+      "powershell"
+    ],
+    "mitre": {
+      "id": [
+        "T1059.001"
+      ],
+      "tactic": [
+        "Execution"
+      ],
+      "technique": [
+        "PowerShell"
+      ]
+    }
+  },
+  "data": {
+    "win": {
+      "system": {
+        "eventID": "4104",
+        "providerName": "Microsoft-Windows-PowerShell",
+        "computer": "WIN-WKS-14"
+      },
+      "eventdata": {
+        "scriptBlockText": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA",
+        "userId": "ACME\\j.smith"
+      }
+    }
+  },
+  "location": "EventChannel"
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "2.0",
+  "accountId": "123456789012",
+  "region": "us-east-1",
+  "partition": "aws",
+  "id": "12abc34d567e8f901g2h3ijk4lm5no67",
+  "arn": "arn:aws:guardduty:us-east-1:123456789012:detector/abc123/finding/12abc34d567e8f901g2h3ijk4lm5no67",
+  "type": "UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration",
+  "resource": {
+    "resourceType": "AccessKey",
+    "accessKeyDetails": {
+      "accessKeyId": "ASIAXAMPLEKEY",
+      "principalId": "AIDAEXAMPLE123",
+      "userName": "ec2-app-role",
+      "userType": "AssumedRole"
+    }
+  },
+  "service": {
+    "serviceName": "guardduty",
+    "detectorId": "abc123",
+    "action": {
+      "awsApiCallAction": {
+        "api": "ListBuckets",
+        "serviceName": "s3.amazonaws.com",
+        "remoteIpDetails": {
+          "ipAddressV4": "198.51.100.77",
+          "country": {
+            "countryName": "Exampleland"
+          }
+        }
+      }
+    },
+    "eventFirstSeen": "2026-05-20T11:01:22Z",
+    "eventLastSeen": "2026-05-20T11:07:45Z",
+    "count": 4
+  },
+  "severity": 8,
+  "title": "EC2 instance credentials may have been exfiltrated",
+  "description": "API calls were made from an IP address that is not associated with the EC2 instance."
+}

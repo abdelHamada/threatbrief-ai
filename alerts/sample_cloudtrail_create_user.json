@@ -1,0 +1,30 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAEXAMPLE123",
+    "arn": "arn:aws:iam::123456789012:user/admin",
+    "accountId": "123456789012",
+    "userName": "admin"
+  },
+  "eventTime": "2026-05-20T12:31:44Z",
+  "eventSource": "iam.amazonaws.com",
+  "eventName": "CreateUser",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "198.51.100.23",
+  "userAgent": "aws-cli/2.15.0",
+  "requestParameters": {
+    "userName": "backup-operator"
+  },
+  "responseElements": {
+    "user": {
+      "path": "/",
+      "userName": "backup-operator",
+      "arn": "arn:aws:iam::123456789012:user/backup-operator",
+      "createDate": "May 20, 2026 12:31:44 PM"
+    }
+  },
+  "eventID": "5f1b2f3c-1111-2222-3333-444455556666",
+  "eventType": "AwsApiCall",
+  "recipientAccountId": "123456789012"
+}

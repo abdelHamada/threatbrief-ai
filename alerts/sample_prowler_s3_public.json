@@ -1,0 +1,26 @@
+{
+  "AssessmentStartTime": "2026-05-20T10:15:00Z",
+  "FindingUniqueId": "prowler-s3-001",
+  "Provider": "aws",
+  "Profile": "default",
+  "AccountId": "123456789012",
+  "Region": "us-east-1",
+  "ServiceName": "s3",
+  "CheckID": "s3_bucket_public_access",
+  "CheckTitle": "Ensure S3 buckets do not allow public access",
+  "Status": "FAIL",
+  "StatusExtended": "Bucket acme-customer-exports allows public read access through its bucket policy.",
+  "ResourceId": "acme-customer-exports",
+  "ResourceArn": "arn:aws:s3:::acme-customer-exports",
+  "Risk": "Public S3 access can expose sensitive data to the internet.",
+  "Remediation": {
+    "Recommendation": {
+      "Text": "Block public access at the account and bucket level and review the bucket policy."
+    }
+  },
+  "Compliance": {
+    "CIS-1.5": [
+      "2.1.5"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-05-20T13:42:11Z",
+  "agent": {
+    "id": "007",
+    "name": "WIN-SRV-01",
+    "ip": "10.0.2.15"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "rule": {
+    "id": "60122",
+    "level": 5,
+    "description": "Windows Logon Failure",
+    "groups": [
+      "windows",
+      "authentication_failed"
+    ],
+    "mitre": {
+      "id": [
+        "T1110"
+      ],
+      "tactic": [
+        "Credential Access"
+      ],
+      "technique": [
+        "Brute Force"
+      ]
+    }
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "data": {
+    "win": {
+      "system": {
+        "eventID": "4625",
+        "providerName": "Microsoft-Windows-Security-Auditing",
+        "computer": "WIN-SRV-01"
+      },
+      "eventdata": {
+        "targetUserName": "administrator",
+        "ipAddress": "203.0.113.55",
+        "logonType": "10",
+        "status": "0xC000006D",
+        "subStatus": "0xC000006A"
+      }
+    }
+  },
+  "location": "EventChannel"
+}
