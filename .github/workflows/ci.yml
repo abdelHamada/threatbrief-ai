@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate sample alert JSON
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          alert_dir = Path("alerts")
+          json_files = sorted(alert_dir.glob("*.json"))
+          assert json_files, "No sample alert JSON files found."
+
+          for path in json_files:
+              with path.open(encoding="utf-8") as handle:
+                  json.load(handle)
+
+          print(f"Validated {len(json_files)} alert samples.")
+
+      - name: Smoke test source detection
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          import app
+
+          sample_expectations = {
+              "sample_cloudtrail_create_user.json": "AWS CloudTrail",
+              "sample_cloudtrail_root_activity.json": "AWS CloudTrail",
+              "sample_guardduty_finding.json": "AWS GuardDuty",
+              "sample_prowler_s3_public.json": "Prowler",
+              "sample_wazuh_failed_login.json": "Wazuh",
+              "sample_wazuh_powershell.json": "Wazuh",
+          }
+
+          for file_name, expected in sample_expectations.items():
+              payload = json.loads(Path("alerts", file_name).read_text(encoding="utf-8"))
+              detected = app.detect_alert_source(payload)
+              assert detected == expected, f"{file_name}: expected {expected}, got {detected}"
+
+          print("ThreatBrief smoke test passed.")
